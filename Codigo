@@ -1,0 +1,71 @@
+# Juego de Batalla Naval (Battleship) en Python
+# Este es un juego simple de Batalla Naval donde un jugador coloca un barco y otro intenta adivinar su posición.
+#Por Maria Jose Camarena Lomeli y Karla Castellanos Gomez
+#Fecha: 2025-06-05
+
+# Crea una matriz cuadrada (lista de listas) de tamaño tamaño × tamaño.
+#Cada celda contiene una "O", que representa el agua sin disparos todavía.
+
+def crear_tablero(tamaño):
+    return [["O" for _ in range(tamaño)] for _ in range(tamaño)]
+
+#Imprime el tablero en consola de forma bonita, con espacios entre los elementos de cada fila.
+def mostrar_tablero(tablero):
+    for fila in tablero:
+        print(" ".join(fila))
+        
+#Crea un tablero de 5x5.
+def main():
+    tamaño = 5
+    tablero = crear_tablero(tamaño)
+
+    print("¡Bienvenido a Battleship!")
+    print("Primero, elige la posición del barco (solo tú la verás).")
+    
+    # El usuario coloca el barco
+    while True:
+        try:
+            barco_fila = int(input("Elige la fila del barco (0-4): "))
+            barco_columna = int(input("Elige la columna del barco (0-4): "))
+            if 0 <= barco_fila < tamaño and 0 <= barco_columna < tamaño:
+                break
+            else:
+                print("Coordenadas fuera del tablero.")
+        except ValueError:
+            print("Por favor ingresa números válidos.")
+
+    print("\n¡Ahora otro jugador intenta adivinar la posición del barco!")
+    mostrar_tablero(tablero)
+
+#El jugador 2 tiene 4 intentos para adivinar dónde está el barco.
+    for turno in range(4):
+        print(f"\nTurno {turno + 1}")
+        try:
+            adivina_fila = int(input("Adivina la fila (0-4): "))
+            adivina_columna = int(input("Adivina la columna (0-4): "))
+        except ValueError:
+            print("Entrada inválida. Intenta de nuevo.")
+            continue
+
+        if adivina_fila == barco_fila and adivina_columna == barco_columna:
+            print("¡Felicidades! ¡Hundiste el barco!")
+            tablero[adivina_fila][adivina_columna] = "B"
+            break
+        elif 0 <= adivina_fila < tamaño and 0 <= adivina_columna < tamaño:
+            if tablero[adivina_fila][adivina_columna] == "X":
+                print("Ya adivinaste esa posición.")
+            else:
+                print("¡Agua!")
+                tablero[adivina_fila][adivina_columna] = "X"
+        else:
+            print("¡Ups! Esa posición está fuera del tablero.")
+
+        mostrar_tablero(tablero)
+    else:
+        print("\n¡Se acabaron los intentos! El barco estaba en:", barco_fila, barco_columna)
+
+    print("\nTablero final:")
+    mostrar_tablero(tablero)
+
+if __name__ == "__main__":
+    main()
