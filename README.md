@@ -22,4 +22,6 @@ Funcionalidades Implementadas
 
 Integrantes
 Karla Castellanos Gomez
+idea del proyecto, lo asocie con git, parte del codigo
 Maria Jose Camarena Lomeli
+Parte del codigo, preentacion, ayudo a karla con git
