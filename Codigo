@@ -66,6 +66,8 @@ def main():
 
     print("\nTablero final:")
     mostrar_tablero(tablero)
-
+#Ejecuta la función principal si este archivo se ejecuta directamente.
+# Esto permite que el código se use como un módulo o script independiente.
+# Si se importa como un módulo, no ejecutará la función main automáticamente.
 if __name__ == "__main__":
     main()
